@@ -25,16 +25,16 @@ const { title } = Astro.props;
   :root {
     --background: #f5f0f0;
     --main-text: #121212;
-    --lightgray: #dddddd;
-    --darkgray: #8c7d70;
 
-    --link: #704e2b;
+    --lightgray: #dddddd;
+    --brown: #704e2b;
   }
 
   html,
   body {
     margin: 20px;
     background-color: var(--background);
+    overflow-x: hidden; 
   }
 
   body {
@@ -53,7 +53,7 @@ const { title } = Astro.props;
   }
 
   a {
-    color: var(--link);
+    color: var(--brown);
   }
 
   a:visited {

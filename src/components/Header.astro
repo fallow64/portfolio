@@ -7,13 +7,13 @@ import pfpImage from "../images/pfp.png";
   <Image id="pfp" loading="eager" alt="Austin Schneider" src={pfpImage} />
   <div id="text">
     <h1>Austin Schneider</h1>
-    <span>Software Developer</span>
+    <span><em>Software Developer</em></span>
   </div>
 
   <style>
     #header-container {
       height: 100px;
-      margin: 10px;
+      margin: 10px 10px 10px 0px;
 
       display: flex;
     }
@@ -28,7 +28,7 @@ import pfpImage from "../images/pfp.png";
     }
 
     #text > span {
-      color: var(--darkgray);
+      color: var(--brown);
     }
 
     #pfp {
@@ -36,6 +36,21 @@ import pfpImage from "../images/pfp.png";
       height: 100px;
       margin-right: 30px;
       border-radius: 20px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      #header-container {
+        height: auto;
+        display: block;
+      }
+
+      #pfp {
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        margin: 0px auto 20px auto;
+      }
     }
   </style>
 </div>
