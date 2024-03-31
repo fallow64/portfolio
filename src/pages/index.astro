@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import Horizontal from "../components/Horizontal.astro";
 ---
 
 <Layout title="Austin Schneider">
@@ -13,7 +14,7 @@ import Header from "../components/Header.astro";
       >.
     </p>
 
-    <hr />
+    <Horizontal />
 
     <h2>Projects</h2>
 
@@ -36,18 +37,6 @@ import Header from "../components/Header.astro";
         </p>
       </li>
     </ul>
-
-    <style>
-      hr {
-        border-left: none;
-        border-bottom: none;
-        border-right: none;
-
-        border-top: 2px dotted var(--lightgray);
-        height: 1px;
-        margin: 20px auto;
-      }
-    </style>
 
     <script is:inline lang="ts">
       // level 100 script kiddy obsfucation lol
