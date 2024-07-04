@@ -4,14 +4,16 @@ import Header from "../components/Header.astro";
 import Horizontal from "../components/Horizontal.astro";
 ---
 
-<Layout title="Austin Schneider" description="A developer attending the University of Wisconsin Madison, interested in programming languages and web development.">
+<Layout
+  title="Austin Schneider"
+  description="Hello world! I'm a developer attending the University of Wisconsin Madison, majoring in Computer Science."
+>
   <main>
     <Header />
     <p>
-      Hello! I'm an incoming freshman at the University of Wisconsin Madison for
-      Computer Science. You can <a id="a-email" href="">email me</a> or visit <a
-        href="https://github.com/fallow64">my github</a
-      >.
+      Hello world! I'm a student at the University of Wisconsin Madison,
+      majoring in Computer Science. You can <a id="a-email" href="">email me</a>
+      or visit <a href="https://github.com/fallow64">my github</a>.
     </p>
 
     <Horizontal />
@@ -21,27 +23,34 @@ import Horizontal from "../components/Horizontal.astro";
     <ul>
       <li>
         <p>
-          <a href="https://github.com/fallow64/flama">Flama</a> - A toy programming
-          language written in Rust that transpiles to Minecraft blocks using <a
-            href="https://mcdiamondfire.com/about">DiamondFire</a
-          >'s coding system.
+          <a href="https://github.com/fallow64/flama">Flama</a> - A statically-typed
+          toy programming language written in Rust that transpiles to Minecraft actions,
+          using <a href="https://mcdiamondfire.com/about">DiamondFire</a>'s
+          coding system.
         </p>
       </li>
       <li>
         <p>
-          <a href="https://github.com/fallow64/portfolio">This Website</a> - Made
-          using <a href="https://astro.build">Astro</a>, a static site generator
-          with a unique concept called "islands" that help you isolate
-          server-side rendering from client-side rendering easily when you don't
-          need complicated reactivity.
+          <a href="https://en.wikipedia.org/wiki/CHIP-8">CHIP-8 Emulator</a> - Created
+          an emulator for the CHIP-8 bytecode language, which is used to create simple
+          games. It's made using C and SDL2 for input and graphics.
         </p>
       </li>
       <li>
         <p>
           <a href="https://fallow64.itch.io/tiny-ludwigs-big-adventure"
             >Tiny Ludwig's Big Adventure</a
-          > - A game jam submission by 4 people for the 2024 Ludwig Game Jam. It
-          is built using the Godot Engine and GDScript.
+          > - Sole developer for a game jam submission with 3 other people for the
+          2023 Ludwig Game Jam. It is built using the Godot Engine and GDScript.
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="/">This Website</a> - Made using <a
+            href="https://astro.build">Astro</a
+          >, a static site generator with a unique concept called "islands" that
+          help you isolate server-side rendering from client-side rendering
+          easily when you don't need complicated reactivity.
         </p>
       </li>
     </ul>
