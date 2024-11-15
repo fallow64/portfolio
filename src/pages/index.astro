@@ -10,11 +10,22 @@ import Horizontal from "../components/Horizontal.astro";
 >
   <main>
     <Header />
-    <p>
-      Hello world! I'm a student at the University of Wisconsin Madison,
-      majoring in Computer Science. You can connect with me on <a href="https://linkedin.com/in/austinschneider314">LinkedIn</a>, <a id="a-email" href="">email me</a>
-      or visit <a href="https://github.com/fallow64">my github</a>.
-    </p>
+    <div id="about">
+      <p>
+        Hello world! I'm a student at the University of Wisconsin Madison,
+        majoring in Computer Science. I'm currently a Student Intern at the
+        <a href="https://morgridge.org/">Morgridge Institute for Research</a> as
+        a web developer.
+      </p>
+
+      <p>
+        You can connect with me on
+        <a href="https://linkedin.com/in/austinschneider314">LinkedIn</a>,
+        <a id="a-email" href="">email me</a>, or visit <a
+          href="https://github.com/fallow64">my github</a
+        >.
+      </p>
+    </div>
 
     <Horizontal />
 
@@ -23,7 +34,7 @@ import Horizontal from "../components/Horizontal.astro";
     <ul>
       <li>
         <p>
-          <a href="https://github.com/fallow64/flama">Flama</a> - A statically-typed
+          <a href="https://github.com/fallow64/flama">Flama</a> &mdash; A statically-typed
           toy programming language written in Rust that transpiles to Minecraft actions,
           using <a href="https://mcdiamondfire.com/about">DiamondFire</a>'s
           coding system. I built this to help new game developers organize code
@@ -32,26 +43,35 @@ import Horizontal from "../components/Horizontal.astro";
       </li>
       <li>
         <p>
+          <a href="https://github.com/fallow64/chatpad-backend">Chatpad</a> &mdash;
+          A message platform that handles user authentication and allows users to
+          chat in various channels. The frontend was built with Next, with the backend
+          implemented in Elysia.
+        </p>
+      </li>
+      <li>
+        <p>
           <a href="https://fallow64.itch.io/tiny-ludwigs-big-adventure"
             >Tiny Ludwig's Big Adventure</a
-          > - Worked with a team to create a game as the sole developer. Submitted
+          > &mdash; Worked with a team to create a game as the sole developer. Submitted
           as an entry to the 2023 Ludwig Game Jam. It is built using the Godot Engine
           and GDScript (a language similar to Python).
         </p>
       </li>
       <li>
         <p>
-          <a href="https://en.wikipedia.org/wiki/CHIP-8">CHIP-8 Emulator</a> - An
-          emulator for the CHIP-8 bytecode language, which is used to create simple
+          <a href="https://en.wikipedia.org/wiki/CHIP-8">CHIP-8 Emulator</a> &mdash;
+          An emulator for the CHIP-8 bytecode language, which is used to create simple
           games. It's made using C and uses SDL2 for input and graphics.
         </p>
       </li>
       <li>
         <p>
-          <a href="/">This Website</a> - A simple website that was made to learn
-          <a href="https://astro.build">Astro</a>, which is a cool framework
-          that lets you work with parts of React, Preact, Svelte, Vue, SolidJS,
-          and more.
+          <a href="/">This Website</a> &mdash; A simple website that was made to
+          learn
+          <a href="https://astro.build">Astro</a>, which is a cool static site
+          generator that lets you selectively work with parts of React, Svelte,
+          Vue, SolidJS, and more.
         </p>
       </li>
     </ul>
@@ -69,3 +89,9 @@ import Horizontal from "../components/Horizontal.astro";
   const emailElem = document.getElementById("a-email");
   emailElem.href = `mailto:${a}${b}${c}@${d}.${e}`;
 </script>
+
+<style>
+  #about {
+    margin-top: 24px;
+  }
+</style>
