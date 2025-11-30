@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 
 interface Project {
   title: string;
@@ -13,7 +12,7 @@ const projects: Project[] = [
     title: "GPT Rewind",
     href: "https://github.com/fallow64/gpt-rewind",
     description:
-      "A website that uses your ChatGPT conversation history to generate insights and analytics, presenting them in a Spotify Wrapped–style format. Built in 24 hours for MadHacks 2025, where it won Best AI Project.",
+      "A website that uses your ChatGPT conversation history to generate insights and analytics, presenting them in a Spotify Wrapped–style format. Built in 24 hours for MadHacks 2025, where we won Best AI Project.",
   },
   {
     title: "Flama",
@@ -46,43 +45,39 @@ const projects: Project[] = [
   title="Austin Schneider"
   description="Hello world! I'm a developer attending the University of Wisconsin–Madison, majoring in Computer Science."
 >
-  <main>
-    <Header />
-    <div id="about">
-      <p>
-        Hello world! I'm a student at the University of Wisconsin&mdash;Madison,
-        majoring in Computer Science. I'm currently working at the <a
-          href="https://chtc.cs.wisc.edu"
-          >Center for High Throughput Computing</a
-        > as a Web Development Intern.
-      </p>
+  <div id="about">
+    <p>
+      Hello world! I'm a student at the University of Wisconsin&mdash;Madison,
+      majoring in Computer Science. I'm currently working at the <a
+        href="https://chtc.cs.wisc.edu">Center for High Throughput Computing</a
+      > as a Web Development Intern.
+    </p>
 
-      <p>
-        You can connect with me on
-        <a href="https://linkedin.com/in/austinschneider314">LinkedIn</a>,
-        <a id="a-email" href="">email me</a>, or visit <a
-          href="https://github.com/fallow64">my GitHub</a
-        >.
-      </p>
-    </div>
+    <p>
+      You can connect with me on
+      <a href="https://linkedin.com/in/austinschneider314">LinkedIn</a>,
+      <a id="a-email" href="">email me</a>, or visit <a
+        href="https://github.com/fallow64">my GitHub</a
+      >.
+    </p>
+  </div>
 
-    <hr />
+  <hr />
 
-    <h2>Projects</h2>
+  <h2>Projects</h2>
 
-    <ul>
-      {
-        projects.map((p) => (
-          <li>
-            <p>
-              <a href={p.href}>{p.title}</a>
-              &mdash; <span set:html={p.description} />
-            </p>
-          </li>
-        ))
-      }
-    </ul>
-  </main>
+  <ul>
+    {
+      projects.map((p) => (
+        <li>
+          <p>
+            <a href={p.href}>{p.title}</a>
+            &mdash; <span set:html={p.description} />
+          </p>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
 
 <script is:inline>
@@ -102,9 +97,3 @@ const projects: Project[] = [
   const emailElem = document.getElementById("a-email");
   emailElem.href = `${a}${b}${c}${d}${e}`;
 </script>
-
-<style>
-  #about {
-    margin-top: 24px;
-  }
-</style>
