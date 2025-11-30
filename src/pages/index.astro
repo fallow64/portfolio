@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import Horizontal from "../components/Horizontal.astro";
 
 interface Project {
   title: string;
@@ -14,7 +13,7 @@ const projects: Project[] = [
     title: "GPT Rewind",
     href: "https://github.com/fallow64/gpt-rewind",
     description:
-      "A web application that uses your ChatGPT conversation history to generate insights and analytics, presenting them in a Spotify Wrapped–style format. Built in 24 hours for MadHacks 2025, where it won Best AI Project.",
+      "A website that uses your ChatGPT conversation history to generate insights and analytics, presenting them in a Spotify Wrapped–style format. Built in 24 hours for MadHacks 2025, where it won Best AI Project.",
   },
   {
     title: "Flama",
@@ -67,7 +66,7 @@ const projects: Project[] = [
       </p>
     </div>
 
-    <Horizontal />
+    <hr />
 
     <h2>Projects</h2>
 
@@ -87,21 +86,21 @@ const projects: Project[] = [
 </Layout>
 
 <script is:inline>
-  // level 100 script kiddy obsfucation lol
-  const a = "austin";
-  const b = "schneider";
-  const c = "314";
-  const d = "gmail";
-  const e = "com";
-
-  const emailElem = document.getElementById("a-email");
-  emailElem.href = `mailto:${a}${b}${c}@${d}.${e}`;
+  const a = "mailt";
+  const b = "o:austi";
+  const c = "nschneider3";
+  const d = "14@gm";
+  const e = "ail.com";
 
   // set all external links to open in a new tab
   for (const elem of document.getElementsByTagName("a")) {
     if (elem.href.startsWith("/")) continue;
     elem.target = "_blank";
   }
+
+  // level 100 script kiddy obsfucation lol
+  const emailElem = document.getElementById("a-email");
+  emailElem.href = `${a}${b}${c}${d}${e}`;
 </script>
 
 <style>
