@@ -5,8 +5,9 @@ content.
 
 ## Commands
 
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts a local dev server                    |
-| `npm run build`   | Builds the website to  `./dist/`             |
+| Command           | Action                                    |
+| :---------------- | :---------------------------------------- |
+| `npm install`     | Installs dependencies                     |
+| `npm run dev`     | Starts a local dev server                 |
+| `npm run build`   | Builds the website to `./dist/`           |
+| `npm run preview` | Previews the built website from `./dist/` |
