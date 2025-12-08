@@ -38,14 +38,16 @@ const { title, description } = Astro.props;
 
   html,
   body {
-    margin: 25px 20px 20px 20px;
     background-color: var(--background);
     overflow-x: hidden;
   }
 
   body {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 25px auto;
+    font-size: 18px;
+    color: var(--main-text);
+
     font-family:
       Trebuchet MS,
       Verdana,
@@ -54,8 +56,6 @@ const { title, description } = Astro.props;
       Tahoma,
       sans-serif,
       monospace;
-    font-size: 18px;
-    color: var(--main-text);
   }
 
   a {
