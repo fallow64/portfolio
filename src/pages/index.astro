@@ -1,42 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 
-const projects = [
+interface Project {
+  title: string;
+  href: string;
+  description: string;
+}
+
+const projects: Project[] = [
+  {
+    title: "GPT Rewind",
+    href: "https://github.com/fallow64/gpt-rewind",
+    description:
+      "A website that uses your ChatGPT conversation history to generate insights and analytics, presenting them in a Spotify Wrapped–style format. Built in 24 hours for MadHacks 2025, where we won Best AI Project.",
+  },
   {
     title: "Flama",
-    url: "https://github.com/fallow64/flama",
+    href: "https://github.com/fallow64/flama",
     description:
-      "A statically-typed programming language written in Rust that compiles to Minecraft using DiamondFire, a Scratch-like Minecraft server. It makes creating games for DiamondFire easier by moving from a block-based programming language to a text-based one.",
-    links: [{ text: "DiamondFire", url: "https://mcdiamondfire.com/about" }],
-  },
-  {
-    title: "SubgenX",
-    url: "https://github.com/fallow64/subgenx",
-    description:
-      "A CLI utility for generating subtitles for videos using OpenAI's whisper model. I've personally used it to transcribe 100+ hours of foreign language videos.",
-    links: [],
-  },
-  {
-    title: "Chatpad",
-    url: "https://github.com/fallow64/chatpad-backend",
-    description:
-      "A message platform that handles user authentication and allows users to chat in various channels. The frontend was built with Next, with the backend implemented in Elysia.",
-    links: [],
+      "A statically-typed programming language written in Rust that compiles to Minecraft using DiamondFire, a Scratch-like Minecraft server. It makes creating games easier by moving from a block-based programming language to a text-based one.",
   },
   {
     title: "CHIP-8 Emulator",
-    url: "https://en.wikipedia.org/wiki/CHIP-8",
+    href: "https://github.com/fallow64/chip8emu",
     description:
-      "An emulator for the CHIP-8 bytecode language, which is used to create simple games. It's made using C and uses SDL2 for input and graphics.",
-    links: [],
+      "An emulator for the CHIP-8 virtual machine, built using C++ and SDL3. It supports all CHIP-8 instructions and includes a simple GUI for loading and running games.",
   },
   {
-    title: "Tiny Ludwig's Big Adventure",
-    url: "https://fallow64.itch.io/tiny-ludwigs-big-adventure",
+    title: "SubgenX",
+    href: "https://github.com/fallow64/subgenx",
     description:
-      "A game jam entry for the 2023 Ludwig Game Jam. Worked with a team of four to create a game as the sole developer. It is built using the Godot Engine and GDScript (a language similar to Python).",
-    links: [],
+      "A CLI utility for generating subtitles for videos using OpenAI's Whisper model. I've personally used it to transcribe 100+ hours of foreign-language videos.",
+  },
+  {
+    title: "Tiny Ludwig's Adventure",
+    href: "https://fallow64.itch.io/tiny-ludwigs-big-adventure",
+    description:
+      "A game jam entry for the 2023 Ludwig Game Jam. I worked with a team of four to create a game as the sole developer using the Godot engine.",
   },
 ];
 ---
@@ -45,119 +45,55 @@ const projects = [
   title="Austin Schneider"
   description="Hello world! I'm a developer attending the University of Wisconsin–Madison, majoring in Computer Science."
 >
-  <main>
-    <Header />
-    <div id="about">
-      <p>
-        <span class="bracket">[</span> Hello world! I'm a student at the University
-        of Wisconsin&mdash;Madison, majoring in Computer Science. I'm current working
-        at the <a href="https://chtc.cs.wisc.edu" target="_blank"
-          >Center for High Throughput Computing</a
-        > as a Web Development Intern. <span class="bracket">]</span>
-      </p>
+  <div id="about">
+    <p>
+      Hello world! I'm a student at the University of Wisconsin&mdash;Madison,
+      majoring in Computer Science. I'm currently working at the <a
+        href="https://chtc.cs.wisc.edu">Center for High Throughput Computing</a
+      > as a Web Development Intern.
+    </p>
 
-      <p>
-        <span class="bracket">&gt;&gt;</span> You can connect with me on
-        <a href="https://linkedin.com/in/austinschneider314" target="_blank"
-          >LinkedIn</a
-        >,
-        <a id="a-email" href="">email me</a>, or visit <a
-          href="https://github.com/fallow64"
-          target="_blank">my github</a
-        >.
-      </p>
-    </div>
+    <p>
+      You can connect with me on
+      <a href="https://linkedin.com/in/austinschneider314">LinkedIn</a>,
+      <a id="a-email" href="">email me</a>, or visit <a
+        href="https://github.com/fallow64">my GitHub</a
+      >.
+    </p>
+  </div>
 
-    <h2>Projects</h2>
+  <hr />
 
-    <ul class="project-list">
-      {
-        projects.map((project) => (
-          <li class="project-item">
-            <p>
-              <span class="project-title">
-                <a href={project.url}>{project.title}</a>
-              </span>{" "}
-              &mdash;{" "}
-              {project.description.split(/\b(DiamondFire)\b/).map((part, i) => {
-                const link = project.links.find((l) => l.text === part);
-                return link ? <a href={link.url}>{part}</a> : part;
-              })}
-            </p>
-          </li>
-        ))
-      }
-    </ul>
-  </main>
+  <h2>Projects</h2>
+
+  <ul>
+    {
+      projects.map((p) => (
+        <li>
+          <p>
+            <a href={p.href}>{p.title}</a>
+            &mdash; <span set:html={p.description} />
+          </p>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
 
 <script is:inline>
-  // level 100 script kiddy obsfucation lol
-  const a = "mail";
-  const b = "to:aus";
-  const c = "tinsch";
-  const d = "neider314@gm";
+  const a = "mailt";
+  const b = "o:austi";
+  const c = "nschneider3";
+  const d = "14@gm";
   const e = "ail.com";
 
+  // set all external links to open in a new tab
+  for (const elem of document.getElementsByTagName("a")) {
+    if (elem.href.startsWith("/")) continue;
+    elem.target = "_blank";
+  }
+
+  // level 100 script kiddy obsfucation lol
   const emailElem = document.getElementById("a-email");
   emailElem.href = `${a}${b}${c}${d}${e}`;
 </script>
-
-<style>
-  #about {
-    margin-top: 0;
-    padding: 24px;
-    background: var(--surface);
-    border: 2px solid var(--border);
-  }
-
-  #about p {
-    margin: 16px 0;
-  }
-
-  .bracket {
-    color: var(--accent);
-    font-weight: 700;
-    font-size: 18px;
-  }
-
-  .project-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .project-item {
-    margin: 20px 0;
-    padding: 20px;
-    background: var(--surface);
-    border: 2px solid var(--border);
-    border-left: 6px solid var(--accent);
-    position: relative;
-  }
-
-  .project-item::before {
-    content: "//";
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    color: var(--border-bright);
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  .project-item:hover {
-    border-color: var(--border-bright);
-    background: var(--surface-bright);
-  }
-
-  .project-title {
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .project-item p {
-    margin: 0;
-  }
-</style>
