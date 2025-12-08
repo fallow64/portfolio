@@ -1,16 +1,21 @@
 ---
 interface Props {
+  component?: keyof HTMLElementTagNameMap;
   command: string;
   cursor?: boolean;
 }
 
-const { command, cursor = false } = Astro.props;
+const { component = "h2", command, cursor = false } = Astro.props;
+const Component = component;
 ---
 
-<div class="mb-5">
-  <span class="user-select-none text-muted" aria-hidden="true">$ </span>
-  {command}{cursor && <span class="cursor-underscore">_</span>}
-</div>
+<Component class="mb-5">
+  <span class="select-none text-muted" aria-hidden="true">$ </span>{command}{
+    cursor &&
+      // prettier-ignore
+      <span class="select-none cursor-underscore" aria-hidden="true">_</span>
+  }
+</Component>
 
 <style>
   .cursor-underscore {
