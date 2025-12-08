@@ -1,5 +1,10 @@
 name: Remote SSH Deploy
-on: [push]
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
 jobs:
   build:
     name: Build
@@ -11,6 +16,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          script: |
-            cd ~/app
-            ./deploy_portfolio.sh
+          script: cd ~/app && bash deploy_portfolio.sh
