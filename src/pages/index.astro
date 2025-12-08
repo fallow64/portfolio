@@ -46,17 +46,18 @@ const projects: Project[] = [
 
 <Layout
   title="Austin Schneider"
-  description="Hello world! I'm a developer attending the University of Wisconsin–Madison, majoring in Computer Science."
+  description="Hello, I'm Austin! I'm a developer studying CS at UW-Madison."
 >
   <Profile />
 
   <Terminal>
     <Command command="cat ~/about.md" />
     <p>
-      Hello world! I'm a student at the University of Wisconsin&mdash;Madison,
-      majoring in Computer Science. I'm currently working at the <a
+      Hello, I'm Austin! I'm a developer studying CS at UW-Madison. I'm
+      currently interning as a Web Developer at the <a
         href="https://chtc.cs.wisc.edu">Center for High Throughput Computing</a
-      > as a Web Development Intern.
+      >, where I build and maintain web applications to support scientific
+      research.
     </p>
 
     <br />
@@ -78,7 +79,9 @@ const projects: Project[] = [
         projects.map((p) => (
           <li>
             <div class="font-bold">
-              <span class="text-muted">##</span>{" "}
+              <span class="text-muted" aria-hidden="true">
+                ##
+              </span>{" "}
               <a href={p.href} class="text-accent">
                 {p.title}
               </a>

@@ -27,7 +27,9 @@ const usernameHostnameLength = username.length + hostname.length + 1;
           >{hostname}</span
         >
       </div>
-      <div class="text-muted">{"-".repeat(usernameHostnameLength)}</div>
+      <div class="text-muted" aria-hidden="true">
+        {"-".repeat(usernameHostnameLength)}
+      </div>
       <div>
         <span>Name</span><span>:</span>
         <span>Austin Schneider</span>

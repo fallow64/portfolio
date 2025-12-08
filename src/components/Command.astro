@@ -3,6 +3,6 @@ const { command } = Astro.props;
 ---
 
 <div class="mb-5">
-  <span class="user-select-none text-muted">$ </span>
+  <span class="user-select-none text-muted" aria-hidden="true">$ </span>
   {command}
 </div>
