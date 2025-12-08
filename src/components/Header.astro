@@ -1,60 +1,88 @@
 ---
 import { Image } from "astro:assets";
 import pfpImage from "../images/pfp.png";
+import Command from "./Command.astro";
+import Terminal from "./Terminal.astro";
 ---
 
 <header>
-  <div id="header-container">
-    <Image id="pfp" loading="eager" alt="Austin Schneider" src={pfpImage} />
-    <div id="text">
-      <h1>Austin Schneider</h1>
-      <span><em>Software Developer</em></span>
+  <Terminal>
+    <Command command="whoami" />
+    <div>
+      <div class="header-container">
+        <Image
+          class="pfp"
+          loading="eager"
+          alt="Austin Schneider"
+          src={pfpImage}
+        />
+        <h1 class="name">Austin Schneider</h1>
+        <div class="role">
+          <span class="bracket">{"{"}</span>
+          <span class="key">"role"</span><span class="colon">:</span>
+          <span class="value">"Software Developer"</span>
+          <span class="bracket">{"}"}</span>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <hr />
+  </Terminal>
 </header>
 
 <style>
-  #header-container {
-    height: 110px;
-    margin: 10px 10px 10px 0px;
-
+  .header-container {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    gap: 12px;
   }
 
-  #text {
-    align-self: flex-end;
-  }
-
-  #text > h1 {
-    font-size: 42px;
+  .name {
+    font-size: 38px;
     margin: 0px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
   }
 
-  #text > span {
+  .role {
+    font-size: 16px;
+    line-height: 1.6;
+    width: fit-content;
+  }
+
+  .bracket,
+  .colon {
+    color: var(--muted);
+  }
+
+  .value {
     color: var(--accent);
+    font-style: italic;
   }
 
-  #pfp {
-    width: 110px;
-    height: 110px;
-    margin-right: 20px;
-    border-radius: 10px;
+  .pfp {
+    width: 128px;
+    height: 128px;
+    border-radius: 8px;
+    border: 2px solid var(--fg);
+    flex-shrink: 0;
   }
 
   @media only screen and (max-width: 600px) {
-    #header-container {
-      height: auto;
-      display: block;
+    .header-container {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    #pfp {
-      display: block;
+    .text > h1 {
+      font-size: 32px;
+    }
+
+    .pfp {
       width: 100%;
-      max-width: 320px;
+      max-width: 200px;
       height: auto;
-      margin: 0px auto 20px auto;
     }
   }
 </style>

@@ -1,4 +1,6 @@
 ---
+import Command from "../components/Command.astro";
+import Terminal from "../components/Terminal.astro";
 import Layout from "../layouts/Layout.astro";
 
 interface Project {
@@ -45,7 +47,8 @@ const projects: Project[] = [
   title="Austin Schneider"
   description="Hello world! I'm a developer attending the University of Wisconsin–Madison, majoring in Computer Science."
 >
-  <div id="about">
+  <Terminal>
+    <Command command="cat ~/about.md" />
     <p>
       Hello world! I'm a student at the University of Wisconsin&mdash;Madison,
       majoring in Computer Science. I'm currently working at the <a
@@ -60,24 +63,24 @@ const projects: Project[] = [
         href="https://github.com/fallow64">my GitHub</a
       >.
     </p>
-  </div>
+  </Terminal>
 
-  <hr />
+  <Terminal>
+    <Command command="cat ~/projects/*.md" />
 
-  <h2>Projects</h2>
-
-  <ul>
-    {
-      projects.map((p) => (
-        <li>
-          <p>
-            <a href={p.href}>{p.title}</a>
-            &mdash; <span set:html={p.description} />
-          </p>
-        </li>
-      ))
-    }
-  </ul>
+    <ul>
+      {
+        projects.map((p) => (
+          <li>
+            <p>
+              <a href={p.href}>{p.title}</a>
+              &mdash; <span set:html={p.description} />
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </Terminal>
 </Layout>
 
 <script is:inline>

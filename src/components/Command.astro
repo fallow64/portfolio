@@ -1,0 +1,18 @@
+---
+const { command } = Astro.props;
+---
+
+<div class="command">
+  <span class="prompt">$ </span>
+  {command}
+</div>
+
+<style>
+  .prompt {
+    color: var(--muted);
+  }
+
+  .command {
+    margin-bottom: 10px;
+  }
+</style>

@@ -29,16 +29,19 @@ const { title, description } = Astro.props;
 
 <style is:global>
   :root {
-    --background: #f9faf7;
-    --main-text: #121212;
+    --bg: #121212;
+    --fg: #1a1a1a;
 
-    --lightgray: #dddddd;
-    --accent: #39702b;
+    --main-text: #f9faf7;
+    --muted: #4f4f4f;
+
+    --border: #dddddd;
+    --accent: #32a0ee;
   }
 
   html,
   body {
-    background-color: var(--background);
+    background-color: var(--bg);
     overflow-x: hidden;
   }
 
@@ -48,14 +51,7 @@ const { title, description } = Astro.props;
     font-size: 18px;
     color: var(--main-text);
 
-    font-family:
-      Trebuchet MS,
-      Verdana,
-      Arial,
-      Helvetica,
-      Tahoma,
-      sans-serif,
-      monospace;
+    font-family: "Roboto Mono", monospace;
   }
 
   a {
@@ -71,7 +67,7 @@ const { title, description } = Astro.props;
     border-bottom: none;
     border-right: none;
 
-    border-top: 2px dotted var(--lightgray);
+    border-top: 2px dotted var(--border);
     height: 1px;
     margin: 20px auto;
   }
