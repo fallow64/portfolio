@@ -3,17 +3,21 @@ interface Props {
   component?: keyof HTMLElementTagNameMap;
   command: string;
   cursor?: boolean;
+  gutter?: boolean;
 }
 
-const { component = "h2", command, cursor = false } = Astro.props;
+const {
+  component = "h2",
+  command,
+  cursor = false,
+  gutter = true,
+} = Astro.props;
 const Component = component;
 ---
 
-<Component class="mb-5">
+<Component class={gutter ? "mb-[1lh]" : ""}>
   <span class="select-none text-muted" aria-hidden="true">$ </span>{command}{
-    cursor &&
-      // prettier-ignore
-      <span class="select-none cursor-underscore" aria-hidden="true">_</span>
+    cursor && /* prettier-ignore */ <span class="select-none cursor-underscore" aria-hidden="true">_</span>
   }
 </Component>
 
