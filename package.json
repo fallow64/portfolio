@@ -8,13 +8,14 @@
     "preview": "wrangler dev",
     "astro": "astro"
   },
-  "dependencies": {
-    "astro": "^5.1.10"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "prettier": "^3.2.5",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.1.10",
     "prettier-plugin-astro": "^0.14.1",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.4.3"
   }
 }

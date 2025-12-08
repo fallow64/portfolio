@@ -1,6 +1,4 @@
 ---
-import Header from "../components/Header.astro";
-
 interface Props {
   title: string;
   description: string;
@@ -10,65 +8,39 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-bg">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
-    <Header />
+  <body
+    class="my-5 mx-5 md:mx-auto max-w-[800px] text-[16px] font-mono text-main-text"
+  >
     <main>
       <slot />
     </main>
   </body>
+
+  <style is:global>
+    @import "tailwindcss";
+
+    @theme {
+      --color-bg: #121212;
+      --color-fg: #1a1a1a;
+
+      --color-main-text: #f9faf7;
+      --color-muted: #4f4f4f;
+
+      --color-border: #dddddd;
+      --color-accent: #32a0ee;
+    }
+
+    a {
+      @apply text-accent underline;
+    }
+  </style>
 </html>
-
-<style is:global>
-  :root {
-    --bg: #121212;
-    --fg: #1a1a1a;
-
-    --main-text: #f9faf7;
-    --muted: #4f4f4f;
-
-    --border: #dddddd;
-    --accent: #32a0ee;
-  }
-
-  html,
-  body {
-    background-color: var(--bg);
-    overflow-x: hidden;
-  }
-
-  body {
-    max-width: 800px;
-    margin: 25px auto;
-    font-size: 18px;
-    color: var(--main-text);
-
-    font-family: "Roboto Mono", monospace;
-  }
-
-  a {
-    color: var(--accent);
-  }
-
-  p {
-    line-height: 1.6;
-  }
-
-  hr {
-    border-left: none;
-    border-bottom: none;
-    border-right: none;
-
-    border-top: 2px dotted var(--border);
-    height: 1px;
-    margin: 20px auto;
-  }
-</style>

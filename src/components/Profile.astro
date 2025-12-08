@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import pfpImage from "../images/pfp.png";
+import { getCommitHash } from "../util/getCommitHash";
+import Command from "./Command.astro";
+import Terminal from "./Terminal.astro";
+
+const [username, hostname] = ["austin_schneider", getCommitHash()];
+const usernameHostnameLength = username.length + hostname.length + 1;
+---
+
+<Terminal>
+  <Command command="neofetch" />
+  <div class="flex gap-[2ch]">
+    <Image
+      class="w-[12em] h-[12em]"
+      loading="eager"
+      alt="Austin Schneider"
+      src={pfpImage}
+    />
+    <div
+      class="[&>div>span:first-child]:inline-block [&>div>span:first-child]:w-[10ch] [&>div>span:first-child]:text-accent [&>div>span:first-child]:font-bold [&>div>span:nth-child(2)]:text-muted [&>div>span:nth-child(3)]:ml-[1ch]"
+    >
+      <div>
+        <span class="!inline !w-auto text-accent font-bold">{username}</span
+        ><span class="text-muted">@</span><span class="!ml-0 text-muted italic"
+          >{hostname}</span
+        >
+      </div>
+      <div class="text-muted">{"-".repeat(usernameHostnameLength)}</div>
+      <div>
+        <span>Name</span><span>:</span>
+        <span>Austin Schneider</span>
+      </div>
+      <div>
+        <span>Role</span><span>:</span>
+        <span>Software Developer</span>
+      </div>
+      <div>
+        <span>Location</span><span>:</span>
+        <span>Madison, WI</span>
+      </div>
+      <div>
+        <span>Education</span><span>:</span>
+        <span>UW-Madison</span>
+      </div>
+      <div>
+        <span>Major</span><span>:</span>
+        <span>Computer Science</span>
+      </div>
+      <div>
+        <span>Status</span><span>:</span>
+        <span class="!text-accent font-bold">Online</span>
+      </div>
+    </div>
+  </div>
+</Terminal>

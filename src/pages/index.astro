@@ -1,5 +1,6 @@
 ---
 import Command from "../components/Command.astro";
+import Profile from "../components/Profile.astro";
 import Terminal from "../components/Terminal.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -47,6 +48,8 @@ const projects: Project[] = [
   title="Austin Schneider"
   description="Hello world! I'm a developer attending the University of Wisconsin–Madison, majoring in Computer Science."
 >
+  <Profile />
+
   <Terminal>
     <Command command="cat ~/about.md" />
     <p>
@@ -55,6 +58,8 @@ const projects: Project[] = [
         href="https://chtc.cs.wisc.edu">Center for High Throughput Computing</a
       > as a Web Development Intern.
     </p>
+
+    <br />
 
     <p>
       You can connect with me on
@@ -68,14 +73,19 @@ const projects: Project[] = [
   <Terminal>
     <Command command="cat ~/projects/*.md" />
 
-    <ul>
+    <ul class="space-y-4">
       {
         projects.map((p) => (
           <li>
-            <p>
-              <a href={p.href}>{p.title}</a>
-              &mdash; <span set:html={p.description} />
-            </p>
+            <div class="font-bold">
+              <span class="text-muted">##</span>{" "}
+              <a href={p.href} class="text-accent">
+                {p.title}
+              </a>
+            </div>
+            <div class="pl-4">
+              <span set:html={p.description} />
+            </div>
           </li>
         ))
       }
