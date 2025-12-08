@@ -1,8 +1,30 @@
 ---
-const { command } = Astro.props;
+interface Props {
+  command: string;
+  cursor?: boolean;
+}
+
+const { command, cursor = false } = Astro.props;
 ---
 
 <div class="mb-5">
   <span class="user-select-none text-muted" aria-hidden="true">$ </span>
-  {command}
+  {command}{cursor && <span class="cursor-underscore">_</span>}
 </div>
+
+<style>
+  .cursor-underscore {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>

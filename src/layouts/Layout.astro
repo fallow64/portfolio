@@ -2,9 +2,11 @@
 interface Props {
   title: string;
   description: string;
+
+  ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,6 +17,13 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
     <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="og:url" content="https://austinschneider.dev" />
+    <meta name="og:type" content="website" />
+
     <title>{title}</title>
   </head>
   <body
