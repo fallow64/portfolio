@@ -6,20 +6,32 @@ import Command from "./Command.astro";
 import Terminal from "./Terminal.astro";
 
 const [username, hostname] = ["austin_schneider", getCommitHash()];
-const usernameHostnameLength = username.length + hostname.length + 1;
+const usernameHostnameLength = username.length + hostname.length + 1; // +1 for '@'
+
+const info = [
+  { label: "Name", value: "Austin Schneider" },
+  { label: "Role", value: "Software Developer" },
+  { label: "Location", value: "Madison, WI" },
+  { label: "Education", value: "UW-Madison" },
+  { label: "Major", value: "Computer Science" },
+  { label: "Year", value: "Junior" },
+  { label: "Status", value: "Online", highlight: true },
+];
+const totalLines = info.length + 2; // +2 for username/hostname and separator
 ---
 
 <Terminal>
   <Command component="div" command="neofetch" cursor={true} />
   <div class="flex flex-col md:flex-row gap-[2ch]">
     <Image
-      class="w-[12em] h-[12em] mx-auto md:mx-0"
+      class="mx-auto md:mx-0"
+      style={`width: ${totalLines}lh; height: ${totalLines}lh;`}
       loading="eager"
       alt="Austin Schneider"
       src={pfpImage}
     />
     <div
-      class="[&>div>span:first-child]:inline-block [&>div>span:first-child]:w-[10ch] [&>div>span:first-child]:text-accent [&>div>span:first-child]:font-bold [&>div>span:nth-child(2)]:text-muted"
+      class="[&>div>span:first-child]:inline-block [&>div>span:first-child]:w-[9ch] [&>div>span:first-child]:text-accent [&>div>span:first-child]:font-bold [&>div>span:nth-child(2)]:text-muted"
     >
       <div>
         <span class="!inline !w-auto text-accent font-bold">{username}</span
@@ -30,30 +42,17 @@ const usernameHostnameLength = username.length + hostname.length + 1;
       <div class="text-muted" aria-hidden="true">
         {"-".repeat(usernameHostnameLength)}
       </div>
-      <div>
-        <span>Name</span><span>:</span>
-        <span>Austin Schneider</span>
-      </div>
-      <div>
-        <span>Role</span><span>:</span>
-        <span>Software Developer</span>
-      </div>
-      <div>
-        <span>Location</span><span>:</span>
-        <span>Madison, WI</span>
-      </div>
-      <div>
-        <span>Education</span><span>:</span>
-        <span>UW-Madison</span>
-      </div>
-      <div>
-        <span>Major</span><span>:</span>
-        <span>Computer Science</span>
-      </div>
-      <div>
-        <span>Status</span><span>:</span>
-        <span class="!text-accent font-bold">Online</span>
-      </div>
+      {
+        info.map((item) => (
+          <div>
+            <span>{item.label}</span>
+            <span>:</span>
+            <span class={item.highlight ? "text-accent font-bold" : ""}>
+              {item.value}
+            </span>
+          </div>
+        ))
+      }
     </div>
   </div>
 </Terminal>
