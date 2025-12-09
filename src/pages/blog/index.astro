@@ -1,0 +1,38 @@
+---
+import Command from "../../components/Command.astro";
+import Terminal from "../../components/Terminal.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const isProd = import.meta.env.PROD;
+
+const testPosts = [
+  { title: "My First Blog Post", href: "/blog/my-first-blog-post" },
+  { title: "Learning Astro", href: "/blog/learning-astro" },
+  { title: "Deploying with Vercel", href: "/blog/deploying-with-vercel" },
+];
+---
+
+<Layout title="Austin's Blog">
+  <Terminal>
+    <Command command="ls -l ~/blog" />
+
+    {
+      isProd ? (
+        <p class="text-accent">Blog posts will be available soon!</p>
+      ) : (
+        <>
+          <p>total {testPosts.length}</p>
+          {testPosts.map((p) => (
+            <div>
+              <span class="text-accent font-bold">{p.title}</span>
+              <span class="text-muted"> - </span>
+              <a href={p.href} class="text-accent">
+                {p.href}
+              </a>
+            </div>
+          ))}
+        </>
+      )
+    }
+  </Terminal>
+</Layout>

@@ -1,7 +1,9 @@
 ---
+import Nav from "../components/Nav.astro";
+
 interface Props {
   title: string;
-  description: string;
+  description?: string;
 
   ogImage?: string;
 }
@@ -19,7 +21,7 @@ const { title, description, ogImage } = Astro.props;
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    {description && <meta property="og:description" content={description} />}
     {ogImage && <meta property="og:image" content={ogImage} />}
     {ogImage && <meta property="og:image:width" content="1200" />}
     {ogImage && <meta property="og:image:height" content="630" />}
@@ -29,7 +31,7 @@ const { title, description, ogImage } = Astro.props;
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    {description && <meta name="twitter:description" content={description} />}
     {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <title>{title}</title>
@@ -37,6 +39,7 @@ const { title, description, ogImage } = Astro.props;
   <body
     class="my-5 mx-5 md:mx-auto max-w-[800px] text-[16px] font-mono text-main-text"
   >
+    <Nav />
     <main>
       <slot />
     </main>

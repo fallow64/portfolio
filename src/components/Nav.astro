@@ -1,0 +1,72 @@
+---
+const currentPath = Astro.url.pathname;
+
+const internalItems = [
+  { label: "home", href: "/" },
+  { label: "blog", href: "/blog" },
+];
+
+const externalItems = [
+  { label: "github", href: "https://github.com/fallow64" },
+  { label: "linkedin", href: "https://linkedin.com/in/austinschneider314" },
+];
+---
+
+<nav class="my-5">
+  <div class="flex flex-wrap justify-between items-center gap-4">
+    <div class="flex flex-wrap gap-4 items-center">
+      {
+        internalItems.map((item, index) => {
+          const isCurrent =
+            currentPath === item.href ||
+            currentPath.startsWith(item.href + "/");
+
+          return (
+            <>
+              <a
+                href={item.href}
+                class:list={[
+                  "font-bold hover:bg-fg transition-colors px-2 py-1 rounded",
+                  {
+                    "bg-fg": isCurrent,
+                    "!text-accent": isCurrent,
+                    "!text-muted": !isCurrent,
+                  },
+                ]}
+              >
+                {item.label}
+              </a>
+              {index < internalItems.length - 1 && (
+                <span class="text-muted select-none" aria-hidden="true">
+                  |
+                </span>
+              )}
+            </>
+          );
+        })
+      }
+    </div>
+
+    <div class="flex flex-wrap gap-4 items-center">
+      {
+        externalItems.map((item, index) => (
+          <>
+            <a
+              href={item.href}
+              class="text-muted hover:text-accent transition-colors px-2 py-1 rounded"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {item.label}
+            </a>
+            {index < externalItems.length - 1 && (
+              <span class="text-muted select-none" aria-hidden="true">
+                |
+              </span>
+            )}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</nav>

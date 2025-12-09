@@ -56,19 +56,10 @@ const projects: Project[] = [
     <p>
       Hello, I'm Austin! I'm a developer studying CS at UW-Madison. I'm
       currently interning as a Web Developer at the <a
-        href="https://chtc.cs.wisc.edu">Center for High Throughput Computing</a
+        href="https://chtc.cs.wisc.edu"
+        target="_blank">Center for High Throughput Computing</a
       >, where I build and maintain web applications to support scientific
       research.
-    </p>
-
-    <br />
-
-    <p>
-      You can connect with me on
-      <a href="https://linkedin.com/in/austinschneider314">LinkedIn</a>,
-      <a id="a-email" href="">email me</a>, or visit <a
-        href="https://github.com/fallow64">my GitHub</a
-      >.
     </p>
   </Terminal>
 
@@ -83,7 +74,7 @@ const projects: Project[] = [
               <span class="text-muted select-none" aria-hidden="true">
                 ##
               </span>{" "}
-              <a href={p.href} class="text-accent">
+              <a href={p.href} target="_blank" class="text-accent">
                 {p.title}
               </a>
             </div>
@@ -96,21 +87,3 @@ const projects: Project[] = [
     </ul>
   </Terminal>
 </Layout>
-
-<script is:inline>
-  const a = "mailt";
-  const b = "o:austi";
-  const c = "nschneider3";
-  const d = "14@gm";
-  const e = "ail.com";
-
-  // set all external links to open in a new tab
-  for (const elem of document.getElementsByTagName("a")) {
-    if (elem.href.startsWith("/")) continue;
-    elem.target = "_blank";
-  }
-
-  // level 100 script kiddy obsfucation lol
-  const emailElem = document.getElementById("a-email");
-  emailElem.href = `${a}${b}${c}${d}${e}`;
-</script>
