@@ -1,36 +1,59 @@
 ---
+import { getCollection } from "astro:content";
 import Command from "../../components/Command.astro";
 import Terminal from "../../components/Terminal.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const isProd = import.meta.env.PROD;
-
-const testPosts = [
-  { title: "My First Blog Post", href: "/blog/my-first-blog-post" },
-  { title: "Learning Astro", href: "/blog/learning-astro" },
-  { title: "Deploying with Vercel", href: "/blog/deploying-with-vercel" },
-];
+const allBlogPosts = await getCollection("blog");
+const sortedPosts = allBlogPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 ---
 
-<Layout title="Austin's Blog">
+<Layout
+  title="Blog - Austin Schneider"
+  description="Technical writings and thoughts on software development"
+>
   <Terminal>
-    <Command command="ls -l ~/blog" />
-
+    <Command command="ls -la ~/blog" />
     {
       isProd ? (
         <p class="text-accent">Blog posts will be available soon!</p>
       ) : (
         <>
-          <p>total {testPosts.length}</p>
-          {testPosts.map((p) => (
-            <div>
-              <span class="text-accent font-bold">{p.title}</span>
-              <span class="text-muted"> - </span>
-              <a href={p.href} class="text-accent">
-                {p.href}
-              </a>
-            </div>
-          ))}
+          <div class="mb-4">
+            <span class="text-muted">total {sortedPosts.length}</span>
+          </div>
+          <ul class="space-y-3">
+            {sortedPosts.map((post: any) => (
+              <li>
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="block hover:bg-bg transition-colors p-2 -mx-2 rounded"
+                >
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                    <span class="text-accent font-bold">{post.data.title}</span>
+                    <span class="text-sm">
+                      {post.data.date.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </div>
+                  <div class="text-sm mt-1">{post.data.description}</div>
+                  {post.data.tags && (
+                    <div class="flex gap-2 mt-2">
+                      {post.data.tags.map((tag: string) => (
+                        <span class="text-xs text-accent">#{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
         </>
       )
     }

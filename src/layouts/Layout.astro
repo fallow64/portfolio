@@ -1,5 +1,6 @@
 ---
 import Nav from "../components/Nav.astro";
+import ThemeManager from "../components/ThemeManager.astro";
 
 interface Props {
   title: string;
@@ -19,6 +20,7 @@ const { title, description, ogImage } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
     <meta name="generator" content={Astro.generator} />
+    <ThemeManager />
 
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
@@ -44,23 +46,18 @@ const { title, description, ogImage } = Astro.props;
       <slot />
     </main>
   </body>
-
-  <style is:global>
-    @import "tailwindcss";
-
-    @theme {
-      --color-bg: #121212;
-      --color-fg: #1a1a1a;
-
-      --color-main-text: #f9faf7;
-      --color-muted: #4f4f4f;
-
-      --color-border: #dddddd;
-      --color-accent: #32a0ee;
-    }
-
-    a {
-      @apply text-accent underline;
-    }
-  </style>
 </html>
+
+<style is:global>
+  @import "tailwindcss";
+
+  @theme {
+    /* see ThemeCycler.astro to find where these are defined */
+    --color-bg: var(--color-bg);
+    --color-fg: var(--color-fg);
+    --color-main-text: var(--color-main-text);
+    --color-muted: var(--color-muted);
+    --color-border: var(--color-border);
+    --color-accent: var(--color-accent);
+  }
+</style>

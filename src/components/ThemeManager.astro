@@ -1,0 +1,72 @@
+---
+const themes = ["midnight", "ocean", "forest", "sunset", "retro"] as const;
+const defaultTheme: (typeof themes)[number] = "midnight";
+---
+
+<script is:inline define:vars={{ themes, defaultTheme }}>
+  // get current theme from localStorage or default to first theme
+  let currentTheme = localStorage.getItem("theme") || defaultTheme;
+
+  // apply theme on load
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("themeIndex", index);
+  }
+  applyTheme(currentTheme);
+
+  // add click handler
+  themeButton?.addEventListener("click", cycleTheme);
+</script>
+
+<style is:global>
+  /* Midnight theme (default) */
+  :root,
+  [data-theme="midnight"] {
+    --color-bg: #0a0e14;
+    --color-fg: #151a21;
+    --color-main-text: #e6e6e6;
+    --color-muted: #6b7280;
+    --color-border: #2d3748;
+    --color-accent: #60a5fa;
+  }
+
+  /* Ocean theme */
+  [data-theme="ocean"] {
+    --color-bg: #0c1821;
+    --color-fg: #1b2838;
+    --color-main-text: #e0f2f7;
+    --color-muted: #5d8a9f;
+    --color-border: #2b4c5f;
+    --color-accent: #4dd0e1;
+  }
+
+  /* Forest theme */
+  [data-theme="forest"] {
+    --color-bg: #161917;
+    --color-fg: #1a2820;
+    --color-main-text: #e8f5e9;
+    --color-muted: #6b8f71;
+    --color-border: #2d4a32;
+    --color-accent: #66bb6a;
+  }
+
+  /* Sunset theme */
+  [data-theme="sunset"] {
+    --color-bg: #1a0f0a;
+    --color-fg: #2d1e19;
+    --color-main-text: #fff3e0;
+    --color-muted: #a67c6f;
+    --color-border: #4a2e23;
+    --color-accent: #ff9e53;
+  }
+
+  /* Retro theme */
+  [data-theme="retro"] {
+    --color-bg: #000000;
+    --color-fg: #1a1a1a;
+    --color-main-text: #00ff00;
+    --color-muted: #008800;
+    --color-border: #00ff00;
+    --color-accent: #00ff00;
+  }
+</style>
