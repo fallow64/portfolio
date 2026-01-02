@@ -20,7 +20,6 @@ const { title, description, ogImage } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
     <meta name="generator" content={Astro.generator} />
-    <ThemeManager />
 
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
@@ -45,6 +44,7 @@ const { title, description, ogImage } = Astro.props;
     <main>
       <slot />
     </main>
+    <ThemeManager />
   </body>
 </html>
 

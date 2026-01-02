@@ -1,21 +1,139 @@
 ---
-const themes = ["midnight", "ocean", "forest", "sunset", "retro"] as const;
-const defaultTheme: (typeof themes)[number] = "midnight";
+const themes = [
+  { name: "midnight", color: "#60a5fa" },
+  { name: "ocean", color: "#4dd0e1" },
+  { name: "forest", color: "#66bb6a" },
+  { name: "retro", color: "#00ff00" },
+  { name: "mocha", color: "#cba6f7" },
+  { name: "vesper", color: "#bb86fc" },
+] as const;
+
+const themeNames = themes.map((t) => t.name);
+
+const defaultTheme: (typeof themeNames)[number] = "midnight";
 ---
 
-<script is:inline define:vars={{ themes, defaultTheme }}>
-  // get current theme from localStorage or default to first theme
-  let currentTheme = localStorage.getItem("theme") || defaultTheme;
+<div
+  id="theme-switcher"
+  class="fixed top-4 right-4 flex items-center p-2 bg-[var(--color-fg)] border border-[var(--color-border)] rounded-full z-[1000]"
+>
+  <svg
+    class="w-5 h-5 mr-1 text-muted"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"></circle>
+    <circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"></circle>
+    <circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"></circle>
+    <circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"></circle>
+    <path
+      d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"
+    ></path>
+  </svg>
+  {
+    themes.map((theme) => (
+      <button
+        title={theme.name}
+        data-theme-name={theme.name}
+        style={`background: ${theme.color}`}
+        aria-label={`Switch to ${theme.name} theme`}
+        aria-pressed="false"
+      />
+    ))
+  }
+</div>
 
-  // apply theme on load
+<style>
+  #theme-switcher {
+    gap: 0;
+    transition: gap 0.3s ease-out;
+  }
+
+  #theme-switcher[data-open] {
+    gap: 0.5rem;
+  }
+
+  #theme-switcher button {
+    height: 1.25rem;
+    width: 0;
+    opacity: 0;
+    border: 0 solid transparent;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+
+  #theme-switcher button:hover {
+    transform: scale(1.15);
+  }
+
+  #theme-switcher[data-open] button,
+  #theme-switcher button[data-active] {
+    width: 1.25rem;
+    opacity: 1;
+    border-width: 2px;
+  }
+
+  #theme-switcher button[data-active] {
+    border-color: var(--color-main-text);
+  }
+</style>
+
+<script is:inline define:vars={{ themeNames, defaultTheme }}>
+  const storedTheme = localStorage.getItem("theme");
+  const currentTheme =
+    storedTheme && themeNames.includes(storedTheme)
+      ? storedTheme
+      : defaultTheme;
+
+  let closeTimeout = null;
+  const CLOSE_DELAY = 300;
+
   function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("themeIndex", index);
+    localStorage.setItem("theme", theme);
+    updateActiveCircle(theme);
   }
+
+  function updateActiveCircle(theme) {
+    const prev = document.querySelector("[data-active]");
+    prev?.removeAttribute("data-active");
+    prev?.setAttribute("aria-pressed", "false");
+    const active = document.querySelector(`[data-theme-name="${theme}"]`);
+    active?.setAttribute("data-active", "");
+    active?.setAttribute("aria-pressed", "true");
+  }
+
+  const switcherContainer = document.getElementById("theme-switcher");
+
+  function expand() {
+    clearTimeout(closeTimeout);
+    switcherContainer.setAttribute("data-open", "");
+  }
+
+  function collapse() {
+    clearTimeout(closeTimeout);
+    closeTimeout = setTimeout(() => {
+      switcherContainer.removeAttribute("data-open");
+    }, CLOSE_DELAY);
+  }
+
   applyTheme(currentTheme);
 
-  // add click handler
-  themeButton?.addEventListener("click", cycleTheme);
+  switcherContainer.addEventListener("mouseenter", expand);
+  switcherContainer.addEventListener("mouseleave", collapse);
+  switcherContainer.addEventListener("focusin", expand);
+  switcherContainer.addEventListener("focusout", collapse);
+
+  switcherContainer.addEventListener("click", (e) => {
+    const button = e.target.closest("[data-theme-name]");
+    if (!button) return;
+    applyTheme(button.dataset.themeName);
+  });
 </script>
 
 <style is:global>
@@ -50,16 +168,6 @@ const defaultTheme: (typeof themes)[number] = "midnight";
     --color-accent: #66bb6a;
   }
 
-  /* Sunset theme */
-  [data-theme="sunset"] {
-    --color-bg: #1a0f0a;
-    --color-fg: #2d1e19;
-    --color-main-text: #fff3e0;
-    --color-muted: #a67c6f;
-    --color-border: #4a2e23;
-    --color-accent: #ff9e53;
-  }
-
   /* Retro theme */
   [data-theme="retro"] {
     --color-bg: #000000;
@@ -68,5 +176,24 @@ const defaultTheme: (typeof themes)[number] = "midnight";
     --color-muted: #008800;
     --color-border: #00ff00;
     --color-accent: #00ff00;
+  }
+
+  /* Catppuccin Mocha theme */
+  [data-theme="mocha"] {
+    --color-bg: #181825;
+    --color-fg: #1e1e2e;
+    --color-main-text: #cdd6f4;
+    --color-muted: #7f849c;
+    --color-border: #313244;
+    --color-accent: #cba6f7;
+  }
+
+  [data-theme="vesper"] {
+    --color-bg: #121212;
+    --color-fg: #191918;
+    --color-main-text: #e0e0e0;
+    --color-muted: #757575;
+    --color-border: #2c2c2c;
+    --color-accent: #bb86fc;
   }
 </style>
