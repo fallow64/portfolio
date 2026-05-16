@@ -1,6 +1,6 @@
 ---
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/700.css";
+import "@fontsource/fira-mono/400.css";
+import "@fontsource/fira-mono/700.css";
 import Nav from "../components/Nav.astro";
 import ThemeManager from "../components/ThemeManager.astro";
 
@@ -54,8 +54,7 @@ const { title, description, ogImage } = Astro.props;
   @import "tailwindcss";
 
   @theme {
-    --font-mono:
-      "IBM Plex Mono", "Consolas", "Menlo", "Monaco", monospace;
+    --font-mono: "Fira Mono", "Consolas", "Menlo", "Monaco", monospace;
 
     /* see ThemeCycler.astro to find where these are defined */
     --color-bg: var(--color-bg);
