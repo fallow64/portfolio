@@ -52,6 +52,10 @@ const { title, description, ogImage } = Astro.props;
   @import "tailwindcss";
 
   @theme {
+    --font-mono:
+      "IBM Plex Mono Variable", "IBM Plex Mono", "Consolas", "Menlo", "Monaco",
+      monospace;
+
     /* see ThemeCycler.astro to find where these are defined */
     --color-bg: var(--color-bg);
     --color-fg: var(--color-fg);
