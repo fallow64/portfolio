@@ -1,16 +1,16 @@
 ---
 const themes = [
-  { name: "midnight", color: "#60a5fa" },
-  { name: "ocean", color: "#4dd0e1" },
-  { name: "forest", color: "#66bb6a" },
-  { name: "retro", color: "#00ff00" },
-  { name: "mocha", color: "#cba6f7" },
   { name: "vesper", color: "#bb86fc" },
+  { name: "mocha", color: "#cba6f7" },
+  { name: "retro", color: "#00ff00" },
+  { name: "forest", color: "#66bb6a" },
+  { name: "ocean", color: "#4dd0e1" },
+  { name: "midnight", color: "#60a5fa" },
 ] as const;
 
 const themeNames = themes.map((t) => t.name);
 
-const defaultTheme: (typeof themeNames)[number] = "vesper";
+const defaultTheme: (typeof themeNames)[number] = "midnight";
 ---
 
 <div
